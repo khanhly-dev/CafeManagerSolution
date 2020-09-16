@@ -1,4 +1,5 @@
 ﻿@model Cafe.ViewModel.Catalog.Sell.SellRequest.SellRequest
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -108,12 +109,12 @@
         <h5>user</h5>
         <input class="date-created" type="datetime-local" name="DateCreated">
     </div>
-    <div class="customer-div">
-        <input type="text" id="customer-seach-input" placeholder="Tìm kiếm khách hàng" name="CustomerId">
+    <form class="customer-div" asp-action="Index">
+        <input type="text" id="customer-seach-input" placeholder="Tìm kiếm khách hàng" name="SellBillId" >
         <button class="customer-seach-icon">
             <i class="fas fa-plus"></i>
         </button>
-    </div>
+    </form>
 
     <div class="product-div">
         <button class="product-btn">
@@ -124,7 +125,7 @@
 
     <div class="info-pay-div">
         <label for="">Số HĐ:</label>
-        <input class="info-pay-input" type="text" name="SellBillId" value="HDB001">
+        <input class="info-pay-input" type="text" name="SellBillId1" value="HDB001">
     </div>
     <div class="info-pay-div">
         <label for="">Tổng tiền:</label>
