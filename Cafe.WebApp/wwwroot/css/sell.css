@@ -1,0 +1,203 @@
+/*-------------bill div--------------------*/
+.seach-div
+{
+    
+    height: 50px;
+    width: 100%;
+    background-color: #414141;
+}
+
+.seach-icon
+{
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+}
+
+#seach-input
+{
+    margin-top: 8.5px;
+    margin-left: 20px;
+    width: 500px;
+    height: 25px;
+    display: inline-block;
+    border-radius: 3px;
+} 
+
+#product-item
+{
+    width: 400px;
+
+    border-bottom: 1px solid #414141;
+}
+
+#price-item
+{
+    width: 150px;
+    
+    border-bottom: 1px solid #414141;
+}
+
+#quantity-item
+{
+    width: 70px;
+   
+    border-bottom: 1px solid #414141;
+}
+
+#total-money-item
+{
+    width: 200px;
+ 
+    border-bottom: 1px solid #414141;
+}
+
+#discount-item
+{
+    width: 100px;
+    
+    border-bottom: 1px solid #414141;
+}
+
+#money-item
+{
+    width: 200px;
+    
+    border-bottom: 1px solid #414141;
+}
+
+td
+{
+    text-align: center;
+    
+    border-bottom: 1px solid #414141;
+}
+/*-----------------pay div--------------------*/
+* :focus
+{
+    outline: none;
+}
+/*----------------------------------------------------------*/
+.user-div
+{
+    width: auto;
+    margin-top: 20px;
+    float: left;
+}
+
+i
+{
+    display: inline-block;
+}
+h5
+{
+    display: inline;
+    margin-right: 60px;
+}
+
+.date-created
+{
+    width: auto;
+    float: right ;
+    border: none;
+    border-bottom: 1px solid black;
+}
+/*-------------------------------------------------------------*/
+
+
+
+.customer-div
+{
+    width: auto;
+    margin-right: 30px;
+    margin-top: 20px;
+}
+
+#customer-seach-input
+{
+    width: 80%;
+    height: 25px;
+    border: none;
+    border-bottom: 1px solid black;
+}
+
+.customer-seach-icon
+{
+    width: 30px;
+    height: 30px;
+   
+}
+/*---------------------------------------------------------------*/
+.info-pay-div
+{
+    width: auto;
+    margin-right: 30px;
+    margin-top: 20px;
+}
+
+.info-pay-input
+{
+    border: none;
+    border-bottom: 1px solid 	#aaaaaa;
+    width: 70%;
+    float: right;
+}
+
+.note-pay-input
+{
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid 	#aaaaaa;
+    height: 25px;
+}
+/*-----------------------------------------------------------*/
+.product-btn
+{
+    width: 100px;
+    height: 25px;
+}
+
+.product-div
+{
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+/*------------------------------------------------------------*/
+.print-btn
+{
+    width: 45%;
+    height: 55px;
+    border-radius: 3px; 
+    background-color: #3c99dc;
+    color: white;
+    font-size: 18px;
+}
+
+.pay-btn
+{
+    background-color: #76ba1b;
+    width: 45%;
+    height: 55px;
+    border-radius: 3px; 
+    color: white;
+    font-size: 18px;
+}
+
+.payment-div
+{
+    margin-top: 180px;
+    width: auto;
+    margin-right: 30px;
+    padding: 0px;
+}
+
+.admin-div
+{
+    float: right;
+    margin-top: 20px;
+}
+
+
+
+
+

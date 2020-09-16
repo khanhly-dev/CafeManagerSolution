@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="/css/MainTab.css">
+    <link href="~/css/autocomplete.css" rel="stylesheet" />
+    <link href="~/css/sell.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/Product.css">
+    <script src="https://kit.fontawesome.com/9604e37fea.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="tittle-div">
+            <img src="../image/iconCafe.jpg" alt="photo">
+            <h1>Nice coffee</h1>
+            <div class="admin-div">
+                <i id="setting" class="fas fa-bars"></i>
+                <h3>user</h3>
+            </div>
+        </div>
+
+        <div class="route-div">
+            <!-- manage route -->
+            <div>
+                <h2 id="h">Manager</h2>
+                <div class="list-in-route">
+                    <i class="fab fa-sellcast"></i>
+                    <a>@Html.ActionLink("Sell","Index","Sell")</a>
+                </div>
+                <div class="list-in-route">
+                    <i class="fas fa-home"></i>
+                    <a>@Html.ActionLink("DashBoard", "Index", "DashBoard")</a>
+                </div>
+                <div class="list-in-route">
+                    <i class="fas fa-shopping-cart"></i>
+                    <a>@Html.ActionLink("Product", "index", "Product") </a>
+                </div>
+                <div class="list-in-route">
+                    <i class="fas fa-user-friends"></i>
+                    <a>@Html.ActionLink("Customer", "Index", "Customer")</a>
+                </div>
+                <div class="list-in-route">
+                    <i class="fas fa-arrow-down"></i>
+                    <a>@Html.ActionLink("Supplier", "Index", "Supplier")</a>
+                </div>
+                <div class="list-in-route">
+                    <i class="fas fa-truck"></i>
+                    <a>@Html.ActionLink("Transfer", "Index", "Transfer")</a>
+                </div>
+                <div class="list-in-route">
+                    <i class="far fa-list-alt"></i>
+                    <a>@Html.ActionLink("Bill", "Index", "Bill")</a>
+                </div>
+                <div class="list-in-route">
+                    <i class="fas fa-user"></i>
+                    <a>@Html.ActionLink("Employee", "Index", "Employee")</a>
+                </div>
+                <div class="list-in-route">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <a>@Html.ActionLink("Revenue", "Index", "Revenue")</a>
+                </div>
+            </div>
+
+            <!-- public route -->
+            <div>
+                <h2>Public</h2>
+                <div class="list-in-route">
+                    <i class="fab fa-sellcast"></i>
+                    <a>@Html.ActionLink("Sell", "Index", "Sell")</a>
+                </div>
+                <div class="list-in-route">
+                    <i class="fas fa-shopping-cart"></i>
+                    <a>@Html.ActionLink("Product", "Index", "Product")</a>
+                </div>
+                <div class="list-in-route">
+                    <i class="fas fa-truck"></i>
+                    <a href="">Tranfers</a>
+                </div>
+                <div class="list-in-route">
+                    <i class="far fa-list-alt"></i>
+                    <a href="">Bill</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-div">
+            @RenderBody()
+        </div>
+
+    </div>
+
+</body>
+
+
+</html>

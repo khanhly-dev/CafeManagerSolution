@@ -1,0 +1,233 @@
+﻿@model Cafe.ViewModel.Catalog.Sell.SellRequest.SellRequest
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    var data = ViewData["data"] as List<Cafe.ViewModel.Catalog.Sell.SellRequest.ListProductInSellRequest>;
+}
+
+<script src="~/js/jquery-3.5.1.js"></script>
+<script src="~/js/jquery.autocomplete.min.js"></script>
+
+<div class="bill-div">
+    <form class="seach-div">
+        <input type="text" name="ProductId" id="seach-input" class="biginput" placeholder="Tìm kiếm">
+        <button class="seach-icon">
+            <i class="fas fa-plus"></i>
+        </button>
+    </form>
+
+
+    @*@Html.Partial("LoadListProduct")*@
+    <table class="list-product">
+        <thead>
+            <tr>
+                <th>
+                </th>
+                <th id="product-item">
+                    Đồ uống
+
+                </th>
+                <th id="price-item">
+                    Giá
+                </th>
+                <th id="quantity-item">
+                    Số lượng
+
+                </th>
+                <th id="total-money-item">
+                    Tổng tiền
+
+                </th>
+                <th id="discount-item">
+                    Giảm giá
+
+                </th>
+                <th id="money-item">
+                    Thành tiền
+
+                </th>
+            </tr>
+        </thead>
+
+
+        @*<tbody>
+                <tr>
+                    <td>
+                        <button>
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </td>
+                    <td>Cafe</td>
+                    <td>25.000</td>
+                    <td>2</td>
+                    <td>50.000</td>
+                    <td>10%</td>
+                    <td>45.000</td>
+                </tr>
+            </tbody>*@
+
+        @foreach (var item in data)
+        {
+            <tr>
+                <td>
+                    <button>
+                        <i class="fas fa-times"></i>
+                    </button>
+                </td>
+                <td class="td-body">
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td class="td-body">
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td class="td-body">
+                    @Html.DisplayFor(modelItem => item.OriginalPrice)
+                </td>
+                <td class="td-body">
+                    @Html.DisplayFor(modelItem => item.Discout)
+                </td>
+                <td class="td-body">
+                    @Html.DisplayFor(modelItem => item.TotalPrice)
+                </td>
+                <td class="td-body">
+                    @Html.DisplayFor(modelItem => item.SellBillId)
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</div>
+
+<div class="pay-div">
+    <div class="user-div">
+        <i class="fas fa-user"></i>
+        <h5>user</h5>
+        <input class="date-created" type="datetime-local" name="DateCreated">
+    </div>
+    <div class="customer-div">
+        <input type="text" id="customer-seach-input" placeholder="Tìm kiếm khách hàng" name="CustomerId">
+        <button class="customer-seach-icon">
+            <i class="fas fa-plus"></i>
+        </button>
+    </div>
+
+    <div class="product-div">
+        <button class="product-btn">
+            <i class="fas fa-search"></i>
+            Bảng giá
+        </button>
+    </div>
+
+    <div class="info-pay-div">
+        <label for="">Số HĐ:</label>
+        <input class="info-pay-input" type="text" name="SellBillId" value="HDB001">
+    </div>
+    <div class="info-pay-div">
+        <label for="">Tổng tiền:</label>
+        <input class="info-pay-input" type="text" name="OriginalPrice">
+    </div>
+    <div class="info-pay-div">
+        <label for="">giảm giá:</label>
+        <input class="info-pay-input" type="text" name="Discout">
+    </div>
+    <div class="info-pay-div">
+        <label for="">Thành tiền:</label>
+        <input class="info-pay-input" type="text" name="TotalPrice">
+    </div>
+    <div class="info-pay-div">
+        <label for="">Khách trả:</label>
+        <input class="info-pay-input" type="text">
+    </div>
+    <div class="info-pay-div">
+        <label for="">Trả lại:</label>
+        <input class="info-pay-input" type="text">
+    </div>
+    <div class="info-pay-div">
+        <input class="note-pay-input" type="text" placeholder="Ghi chú" name="Note">
+    </div>
+
+    <div class="payment-div"></div>
+    <button class="print-btn">
+        In hóa đơn
+    </button>
+    <button class="pay-btn">
+        Thanh toán
+    </button>
+</div>
+
+
+
+
+
+@*<script type="text/javascript">
+
+
+
+
+        var Manager = {
+            GetAllProduct: function () {
+                var listNameArray = new Array();
+                var obj = "";
+                var serviceUrl = "https://localhost:5001/api/sell/getname";
+                window.Manager.GetApi(serviceUrl, onSuccess, onFailed);
+                function onSuccess(jsonData) {
+                    obj = jsonData;
+                    $.each(jsonData, function (i, item) {
+                        listNameArray[i] = item.name.toString();
+                    });
+                    console.log("listNameArray", listNameArray)
+
+                }
+                function onFailed(error) {
+                    window.alert(error.statusText);
+                }
+                return listNameArray
+            },
+
+            GetApi: function (serviceUrl, successCallBack, errorCallBack) {
+                $.ajax({
+                    type: "GET",
+                    url: serviceUrl,
+                    dataType: "json",
+                    success: successCallBack,
+                    error: errorCallBack
+                });
+            }
+        }
+
+        $(document).ready(async function () {
+            var listNameArray = new Array();
+            listNameArray = await Manager.GetAllProduct();
+            console.log(listNameArray)
+            $('#seach-input').autocomplete({
+                lookup: listNameArray
+            });
+        })
+    </script>*@
+
+@*<script>
+
+        $(document).ready(function () {
+            var a = [
+                'Afghan afghani',
+                'Albanian lek',
+                'Algerian dinar',
+                'European euro',
+                'Angolan kwanza',
+                'East Caribbean dollar',
+                'Vietnamese dong',
+                'Yemeni rial',
+                'Zambian kwacha',
+                'Zimbabwean dollar'
+            ];
+            console.log(a);
+            $('#seach-input').autocomplete({
+                lookup: a,
+            });
+        });
+    </script>*@
+

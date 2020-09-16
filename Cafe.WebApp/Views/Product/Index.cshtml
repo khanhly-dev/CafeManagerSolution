@@ -1,0 +1,85 @@
+﻿@using Cafe.ViewModel.Catalog.Common
+@model PageResult<Cafe.ViewModel.Catalog.Product.ProductViewModel> 
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="filter-div">
+    <div class="all-in-filter">
+        <h2 id="list-product">Danh mục</h2>
+        <div class="filter-content">
+            <h4 id="filter-tittle">Phân loại</h4>
+            <div class="input-product-div">
+                <input class="checkbox-input" type="checkbox">Đồ ăn
+            </div>
+            <div>
+                <input class="checkbox-input" type="checkbox">Đồ uống
+            </div>
+
+            <h4 id="filter-tittle">Sắp xếp</h4>
+            <div>
+                <input class="checkbox-input" type="checkbox">Theo tên
+            </div>
+            <div>
+                <input class="checkbox-input" type="checkbox">Theo giá
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<div class="list-product-div">
+    <form class="seach-product-div" asp-action="Index" method="get">
+        <input type="text"  name="keyword" id="seach-input" placeholder="Tìm kiếm">
+        <button class="seach-icon" type="submit">
+            <i class="fas fa-search"></i>
+        </button>
+       
+    </form>
+
+    <div class="wrap">
+        <table class="head">
+            <tbody>
+                <tr>
+                    <td class="td-head">Sản phẩm</td>
+                    <td class="td-head">Giá</td>
+                    <td class="td-head">Mô tả</td>
+                    <td class="td-head">Người tạo</td>
+                    <td class="td-head">Ngày tạo</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="scroll-table">
+            <table>
+                <tbody></tbody>
+                @foreach (var item in Model.Items)
+                {
+                    <tr>
+                        <td class="td-body">
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td class="td-body">
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                        <td class="td-body">
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td class="td-body">
+                            @Html.DisplayFor(modelItem => item.UserCreated)
+                        </td>
+                        <td class="td-body">
+                            @Html.DisplayFor(modelItem => item.DateCreated)
+                        </td>                      
+                    </tr>
+                }
+
+            </table>
+        </div>
+    </div>
+
+
+</div>

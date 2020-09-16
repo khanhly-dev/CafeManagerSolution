@@ -1,0 +1,93 @@
+.filter-div
+{
+
+    padding-left: 20px;
+    float: left;
+    border-right: 1px solid black;
+    width: 20%;
+    height: 100%;
+}
+
+.list-product-div
+{
+    float: right;
+    width: 78%;
+    height: 100%;
+}
+
+.filter-content
+{
+    margin-left: 50px;
+}
+
+.checkbox-input
+{
+    margin-top: 15px;
+}
+#list-product
+{
+    font-size: 40px;
+}
+
+#filter-tittle
+{
+    font-size: 30px;
+}
+
+.seach-product-div
+{
+    margin-top: 30px;
+}
+
+
+
+
+
+
+
+
+
+
+
+.td-head {
+    font-size: 30px;
+    font-weight: 900;
+    border-bottom: 1px solid black;
+}
+
+.td-body {
+    width: 20%;
+    border-bottom: 1px solid black;
+}
+
+.wrap {
+    width: 100%;
+}
+
+    .wrap table {
+        table-layout: fixed;
+        width: 100%;
+    }
+
+        .wrap table.head {
+            width: calc(100% - 15px);
+        }
+
+            .wrap table.head tr td {
+                background: #eee;
+            }
+
+table tr td {
+    border: 1px solid #eee;
+    padding: 5px;
+    word-wrap: break-word;
+}
+
+.scroll-table {
+    height: 700px;
+    overflow-y: auto;
+}
+
+table {
+    width: 100%;
+}

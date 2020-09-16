@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Cafe.Data\Cafe.Data.csproj" />
+    <ProjectReference Include="..\Cafe.Utilities\Cafe.Utilities.csproj" />
+    <ProjectReference Include="..\Cafe.ViewModel\Cafe.ViewModel.csproj" />
+  </ItemGroup>
+
+</Project>

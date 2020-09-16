@@ -1,0 +1,53 @@
+﻿@using Cafe.ViewModel.Catalog.Common
+@model PageResult<Cafe.ViewModel.Catalog.Customer.CustomerRequest.CustomerViewModel>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{ ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<div class="list-customer-div">
+    <form class="seach-div">
+        <input type="text" name="keyword" value="@ViewBag.Keyword" id="seach-input" placeholder="Tìm kiếm">
+        <button class="seach-icon">
+            <i class="fas fa-search"></i>
+        </button>
+    </form>
+
+    <div class="wrap">
+        <table class="head">
+            <tbody>
+                <tr>
+                    <td class="td-head">Tên khách hàng</td>
+                    <td class="td-head">SĐT</td>
+                    <td class="td-head">Địa chỉ</td>
+                    <td class="td-head">Giới tính</td>
+                    <td class="td-head">Ngày sinh</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="scroll-table">
+            <table>
+                <tbody></tbody>
+                @foreach (var item in Model.Items)
+                {
+    <tr>
+        <td class="td-body">
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td class="td-body">
+            @Html.DisplayFor(modelItem => item.PhoneNumber)
+        </td>
+        <td class="td-body">
+            @Html.DisplayFor(modelItem => item.Adress)
+        </td>
+        <td class="td-body">
+            @Html.DisplayFor(modelItem => item.Sex)
+        </td>
+        <td class="td-body">
+            @Html.DisplayFor(modelItem => item.DOB)
+        </td>
+    </tr>}
+            </table>
+        </div>
+    </div>
+</div>
+
