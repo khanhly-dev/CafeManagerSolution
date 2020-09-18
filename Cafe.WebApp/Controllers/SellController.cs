@@ -23,21 +23,7 @@ namespace Cafe.WebApp.Controllers
         {
             var billData = new List<ListProductInSellRequest>();
             billData = await _sellApiClient.LoadListProduct(request);
-            //foreach (var item in billData)
-            //{
-            //    if(item.SellBillId == sellRequest.SellBillId)
-            //    {
-            //        ViewData["data"] = billData;
-            //    }
-            //}
-            ViewData["data"] = billData;
-            foreach (var item in billData)
-            {
-                if (item.SellBillId == sellRequest.SellBillId)
-                {
-                    ViewData["data"] = billData;
-                }
-            }
+            ViewData["data"] = billData;         
             return View();
         }
      
