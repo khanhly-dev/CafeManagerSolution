@@ -39,5 +39,27 @@ namespace Cafe.WebApp.Services.Sell
             var data = JsonConvert.DeserializeObject<List<ListProductInSellRequest>>(body);
             return data;
         }
+
+
+        public async Task<bool> Create(SellRequest request)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri("https://localhost:5001");
+
+            var requestContent = new MultipartFormDataContent();
+
+            requestContent.Add(new StringContent(request.SellBillId.ToString()), "SellBillId");
+            requestContent.Add(new StringContent(request.CustomerId.ToString()), "CustomerId");
+            requestContent.Add(new StringContent(request.DateCreated.ToString()), "DateCreated");
+            requestContent.Add(new StringContent(request.UserCreated.ToString()), "UserCreated");
+            requestContent.Add(new StringContent(request.OriginalPrice.ToString()), "OriginalPrice");
+            requestContent.Add(new StringContent(request.Discout.ToString()), "Discout");
+            requestContent.Add(new StringContent(request.TotalPrice.ToString()), "TotalPrice");
+            requestContent.Add(new StringContent(request.Note.ToString()), "Note");
+
+            var response = await client.PostAsync("/api/Sell/", requestContent);
+
+            return response.IsSuccessStatusCode;
+        }
     }
 }

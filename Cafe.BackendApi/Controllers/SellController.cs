@@ -13,25 +13,61 @@ namespace Cafe.BackendApi.Controllers
     [ApiController]
     public class SellController : ControllerBase
     {
-        private readonly ISellService _productService;
+        private readonly ISellService _sellService;
 
-        public SellController(ISellService productService)
+        public SellController(ISellService sellService)
         {
-            _productService = productService;
+            _sellService = sellService;
         }
 
         [HttpGet("getName")]
         public async Task<IActionResult> GetAllPaging()
         {
-            var products = await _productService.GetName();
+            var products = await _sellService.GetName();
             return Ok(products);
         }
 
         [HttpGet("LoadListProduct")]
         public async Task<IActionResult> LoadListProduct([FromQuery] ListProductInSellRequest request)
         {
-            var listProducts = await _productService.LoadListProduct(request);
+            var listProducts = await _sellService.LoadListProduct(request);
             return Ok(listProducts);
+        }
+
+        [HttpPost]
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> Create([FromForm] SellRequest request)
+        {
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var sellBill = await _sellService.CreateSellBill(request);           
+            return Ok(sellBill);
+        }
+
+        [HttpPost]
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> Complete([FromForm] SellRequest request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var productInSellBill = await _sellService.CompleteSellBill(request);
+            return Ok(productInSellBill);
+        }
+
+
+        [HttpDelete]
+        public async Task<IActionResult> Undo([FromForm] SellRequest request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var productInSellBill = await _sellService.UndoSellBill(request);
+            return Ok(productInSellBill);
         }
     }
 }

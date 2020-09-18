@@ -12,5 +12,7 @@ namespace Cafe.WebApp.Services.Sell
         Task<List<GetNameRequest>> GetName();
 
         Task<List<ListProductInSellRequest>> LoadListProduct(ListProductInSellRequest request);
+
+        Task<bool> Create(SellRequest request);
     }
 }
