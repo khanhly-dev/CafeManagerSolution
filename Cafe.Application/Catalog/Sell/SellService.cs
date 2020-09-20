@@ -21,7 +21,7 @@ namespace Cafe.Application.Catalog.Sell
             _context = context;
         }
 
-        public async Task<int> CompleteSellBill(SellRequest request)
+        public async Task<int> AddProductIntoSellBill(SellRequest request)
         {
             var SellBillCompleted = new ProductInSellBill()
             {
@@ -35,7 +35,7 @@ namespace Cafe.Application.Catalog.Sell
         }
 
 
-        public async Task<int> UndoSellBill(SellRequest request)
+        public async Task<int> DeleteProductFromSellBill(SellRequest request)
         {
             var sellBill = await _context.ProductInSellBills.FindAsync(request.SellBillId, request.ProductId);
 

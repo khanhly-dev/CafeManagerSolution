@@ -14,9 +14,9 @@ namespace Cafe.Application.Catalog.Sell
 
         Task<int> CreateSellBill(SellRequest request);
 
-        Task<int> CompleteSellBill(SellRequest request);
+        Task<int> AddProductIntoSellBill(SellRequest request);
 
-        Task<int> UndoSellBill(SellRequest request);
+        Task<int> DeleteProductFromSellBill(SellRequest request);
 
         Task<List<ListProductInSellRequest>> LoadListProduct(ListProductInSellRequest request);
     }

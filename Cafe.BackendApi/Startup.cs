@@ -1,6 +1,5 @@
 using Cafe.Application.Catalog.Customers;
 using Cafe.Application.Catalog.Products;
-using Cafe.Application.Catalog.Products;
 using Cafe.Application.Catalog.Sell;
 using Cafe.Data.EF;
 using Microsoft.AspNetCore.Builder;
@@ -9,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
+
 
 namespace Cafe.BackendApi
 {
@@ -44,6 +45,12 @@ namespace Cafe.BackendApi
             services.AddTransient<ICustomerService, CustomerService>();
 
             services.AddControllersWithViews();
+
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "SwaggerCafe", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -67,6 +74,15 @@ namespace Cafe.BackendApi
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseSwagger();
+           
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "SwaggerCafe v1");
+                
+            });
 
             app.UseEndpoints(endpoints =>
             {
