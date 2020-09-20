@@ -20,6 +20,8 @@ namespace Cafe.BackendApi.Controllers
             _sellService = sellService;
         }
 
+
+
         [HttpGet("getName")]
         public async Task<IActionResult> GetAllPaging()
         {
@@ -34,39 +36,39 @@ namespace Cafe.BackendApi.Controllers
             return Ok(listProducts);
         }
 
-        [HttpPost]
+        [HttpPost("create")]
         [Consumes("multipart/form-data")]
         public async Task<IActionResult> Create([FromForm] SellRequest request)
-        {
-            if(!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            var sellBill = await _sellService.CreateSellBill(request);           
-            return Ok(sellBill);
-        }
-
-        [HttpPost]
-        [Consumes("multipart/form-data")]
-        public async Task<IActionResult> Complete([FromForm] SellRequest request)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            var productInSellBill = await _sellService.CompleteSellBill(request);
+            var sellBill = await _sellService.CreateSellBill(request);
+            return Ok(sellBill);
+        }
+
+        [HttpPost("AddProduct")]
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> AddProductIntoSellBill([FromForm] SellRequest request)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var productInSellBill = await _sellService.AddProductIntoSellBill(request);
             return Ok(productInSellBill);
         }
 
 
         [HttpDelete]
-        public async Task<IActionResult> Undo([FromForm] SellRequest request)
+        public async Task<IActionResult> DeleteProductFromSellBill([FromForm] SellRequest request)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-            var productInSellBill = await _sellService.UndoSellBill(request);
+            var productInSellBill = await _sellService.DeleteProductFromSellBill(request);
             return Ok(productInSellBill);
         }
     }

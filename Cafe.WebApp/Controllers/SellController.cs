@@ -20,13 +20,12 @@ namespace Cafe.WebApp.Controllers
         }
 
         public async Task<IActionResult> Index(ListProductInSellRequest request, SellRequest sellRequest)
-        {
-            var billData = new List<ListProductInSellRequest>();
-            billData = await _sellApiClient.LoadListProduct(request);
-            ViewData["data"] = billData;         
+        {           
+            var billData = await _sellApiClient.LoadListProduct(request);
+            ViewData["data"] = billData;
             return View();
         }
-     
+
 
         public async Task<List<GetNameRequest>> GetName()
         {
