@@ -19,7 +19,7 @@ namespace Cafe.WebApp.Controllers
             _sellApiClient = sellApiClient;
         }
 
-        public async Task<IActionResult> Index(ListProductInSellRequest request, SellRequest sellRequest)
+        public async Task<IActionResult> Index(ListProductInSellRequest request, SellBillCreateRequest sellRequest)
         {           
             var billData = await _sellApiClient.LoadListProduct(request);
             ViewData["data"] = billData;

@@ -38,7 +38,7 @@ namespace Cafe.BackendApi.Controllers
 
         [HttpPost("create")]
         [Consumes("multipart/form-data")]
-        public async Task<IActionResult> Create([FromForm] SellRequest request)
+        public async Task<IActionResult> Create([FromForm] SellBillCreateRequest request)
         {
             if (!ModelState.IsValid)
             {
@@ -50,7 +50,7 @@ namespace Cafe.BackendApi.Controllers
 
         [HttpPost("AddProduct")]
         [Consumes("multipart/form-data")]
-        public async Task<IActionResult> AddProductIntoSellBill([FromForm] SellRequest request)
+        public async Task<IActionResult> AddProductIntoSellBill([FromForm] UpdateProductInBillRequest request)
         {
             if (!ModelState.IsValid)
             {
@@ -62,7 +62,7 @@ namespace Cafe.BackendApi.Controllers
 
 
         [HttpDelete]
-        public async Task<IActionResult> DeleteProductFromSellBill([FromForm] SellRequest request)
+        public async Task<IActionResult> DeleteProductFromSellBill([FromForm] UpdateProductInBillRequest request)
         {
             if (!ModelState.IsValid)
             {

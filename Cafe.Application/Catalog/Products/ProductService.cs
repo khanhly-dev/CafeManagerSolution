@@ -80,11 +80,15 @@ namespace Cafe.Application.Catalog.Products
 
 
             if (!string.IsNullOrEmpty(request.Keyword))
+            {
                 query = query.Where(x => x.Name.Contains(request.Keyword));
+            }
 
-            //int totalRow = await query.CountAsync();
+            int totalRow = await query.CountAsync();
 
             var data = await query
+                .Skip((request.PageIndex-1)*request.PageSize)
+                .Take(request.PageSize)
                 .Select(x => new ProductViewModel()
                 {
                     Id = x.Id,
@@ -98,6 +102,9 @@ namespace Cafe.Application.Catalog.Products
 
             var pageResult = new PageResult<ProductViewModel>()
             {
+                PageSize=request.PageSize,
+                PageIndex=request.PageIndex,
+                TotalRecords=totalRow,
                 Items = data
             };
             return pageResult;

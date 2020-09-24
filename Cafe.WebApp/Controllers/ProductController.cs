@@ -26,9 +26,20 @@ namespace Cafe.WebApp.Controllers
 
 
 
-        public async Task<IActionResult> Index(GetProductPagingRequest request)
-        {         
+        public async Task<IActionResult> Index(string keyword, int pageIndex = 1, int pageSize = 10 )
+        {
+            var request = new GetProductPagingRequest()
+            {
+                Keyword = keyword,
+                PageIndex = pageIndex,
+                PageSize = pageSize,
+            };
             var data = await _productApiClient.GetPagings(request);
+            ViewBag.pageIndex = pageIndex;          
+            if (TempData["result"] != null)
+            {
+                ViewBag.SuccessMsg = TempData["result"];
+            }
             return View(data);
         } 
     }
