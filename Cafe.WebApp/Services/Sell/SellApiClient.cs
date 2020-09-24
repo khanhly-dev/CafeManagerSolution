@@ -41,7 +41,7 @@ namespace Cafe.WebApp.Services.Sell
         }
 
 
-        public async Task<bool> Create(SellRequest request)
+        public async Task<bool> Create(SellBillCreateRequest request)
         {
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri("https://localhost:5001");

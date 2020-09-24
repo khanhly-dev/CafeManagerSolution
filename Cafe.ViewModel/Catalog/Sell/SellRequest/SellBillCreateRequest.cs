@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Cafe.ViewModel.Catalog.Sell.SellRequest
 {
-    public class SellRequest
+    public class SellBillCreateRequest
     {
         public string SellBillId { get; set; }
         public string CustomerId { get; set; }
@@ -14,8 +14,5 @@ namespace Cafe.ViewModel.Catalog.Sell.SellRequest
         public int Discout { get; set; }
         public int TotalPrice { get; set; }
         public string Note { get; set; }
-
-        public int ProductId { get; set; }
-
     }
 }

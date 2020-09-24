@@ -12,11 +12,11 @@ namespace Cafe.Application.Catalog.Sell
     {
         Task<List<GetNameRequest>> GetName();
 
-        Task<int> CreateSellBill(SellRequest request);
+        Task<int> CreateSellBill(SellBillCreateRequest request);
 
-        Task<int> AddProductIntoSellBill(SellRequest request);
+        Task<int> AddProductIntoSellBill(UpdateProductInBillRequest request);
 
-        Task<int> DeleteProductFromSellBill(SellRequest request);
+        Task<int> DeleteProductFromSellBill(UpdateProductInBillRequest request);
 
         Task<List<ListProductInSellRequest>> LoadListProduct(ListProductInSellRequest request);
     }
