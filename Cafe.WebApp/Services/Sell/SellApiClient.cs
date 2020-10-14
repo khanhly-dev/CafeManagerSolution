@@ -34,7 +34,7 @@ namespace Cafe.WebApp.Services.Sell
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri("https://localhost:5001");
 
-            var response = await client.GetAsync($"/api/Sell/LoadListProduct?keyword={request.SellBillId}");
+            var response = await client.GetAsync($"/api/Sell/LoadListProduct?SellBillId={request.SellBillId}");
             var body = await response.Content.ReadAsStringAsync();
             var data = JsonConvert.DeserializeObject<List<ListProductInSellRequest>>(body);
             return data;
@@ -57,7 +57,7 @@ namespace Cafe.WebApp.Services.Sell
             requestContent.Add(new StringContent(request.TotalPrice.ToString()), "TotalPrice");
             requestContent.Add(new StringContent(request.Note.ToString()), "Note");
 
-            var response = await client.PostAsync("/api/Sell/", requestContent);
+            var response = await client.PostAsync("/api/Sell/create/", requestContent);
 
             return response.IsSuccessStatusCode;
         }
