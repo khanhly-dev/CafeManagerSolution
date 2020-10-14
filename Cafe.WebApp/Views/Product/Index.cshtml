@@ -80,7 +80,7 @@
             </table>
 
 
-            @for (int i = 0; i < Model.PageCount; i++)
+            @*@for (int i = 0; i < Model.PageCount; i++)
             {
                     //<a href="@urlTemplate.Replace("{0}", (Model.PageIndex+i).ToString())" name="pageIndex">@(ViewBag.pageIndex+i)</a>
                 @if (Model.PageIndex > 1)
@@ -91,7 +91,10 @@
                 {
         <a href="@urlTemplate.Replace("{0}", (Model.PageIndex+1).ToString())" name="pageIndex">@(ViewBag.pageIndex+i)</a>
                 }
-            }
+
+
+
+            }*@
             @if (Model.PageIndex > 1)
             {
                 <a href="@urlTemplate.Replace("{0}", (Model.PageIndex-1).ToString())" name="pageIndex">trước</a>

@@ -13,11 +13,12 @@ namespace Cafe.Data.Configurations
         {
             builder.ToTable("SellBill");
             builder.HasKey(x => x.Id);
+            builder.Property(x => x.CustomerId).HasDefaultValue("Khách lẻ");
             builder.Property(x => x.OriginalPrice).IsRequired();
             builder.Property(x => x.TotalPrice).IsRequired();
             builder.Property(x => x.UserCreated).IsRequired();
             builder.Property(x => x.DateCreated).IsRequired();
-            builder.Property(x => x.Discout).IsRequired();
+            builder.Property(x => x.Discout).IsRequired();    
 
             builder.HasOne(x => x.Customer).WithMany(x => x.Bills).HasForeignKey(x => x.CustomerId);
         }

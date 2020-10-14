@@ -4,14 +4,16 @@ using Cafe.Data.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Cafe.Data.Migrations
 {
     [DbContext(typeof(CafeManagerDbContext))]
-    partial class CafeManagerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201008142530_configSellBill")]
+    partial class configSellBill
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -52,7 +54,7 @@ namespace Cafe.Data.Migrations
                         {
                             Id = "0356751687",
                             Adress = "lamdien",
-                            DOB = new DateTime(2020, 10, 9, 22, 35, 49, 898, DateTimeKind.Local).AddTicks(1518),
+                            DOB = new DateTime(2020, 10, 8, 21, 25, 30, 248, DateTimeKind.Local).AddTicks(1402),
                             Name = "leduykhanh",
                             PhoneNumber = "0356751687",
                             Sex = true
@@ -61,7 +63,7 @@ namespace Cafe.Data.Migrations
                         {
                             Id = "0866162243",
                             Adress = "lamdien",
-                            DOB = new DateTime(2020, 10, 9, 22, 35, 49, 898, DateTimeKind.Local).AddTicks(6670),
+                            DOB = new DateTime(2020, 10, 8, 21, 25, 30, 248, DateTimeKind.Local).AddTicks(6723),
                             Name = "nguyenvana",
                             PhoneNumber = "0866162243",
                             Sex = true
@@ -141,7 +143,7 @@ namespace Cafe.Data.Migrations
                         new
                         {
                             Id = 1,
-                            DateCreated = new DateTime(2020, 10, 9, 22, 35, 49, 895, DateTimeKind.Local).AddTicks(4683),
+                            DateCreated = new DateTime(2020, 10, 8, 21, 25, 30, 245, DateTimeKind.Local).AddTicks(3994),
                             DateEdited = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Đồ uống",
                             Name = "Sg Cafe",
@@ -152,7 +154,7 @@ namespace Cafe.Data.Migrations
                         new
                         {
                             Id = 2,
-                            DateCreated = new DateTime(2020, 10, 9, 22, 35, 49, 896, DateTimeKind.Local).AddTicks(2340),
+                            DateCreated = new DateTime(2020, 10, 8, 21, 25, 30, 246, DateTimeKind.Local).AddTicks(1696),
                             DateEdited = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Đồ uống",
                             Name = "Sg Cafe Milk",
@@ -163,7 +165,7 @@ namespace Cafe.Data.Migrations
                         new
                         {
                             Id = 3,
-                            DateCreated = new DateTime(2020, 10, 9, 22, 35, 49, 896, DateTimeKind.Local).AddTicks(2371),
+                            DateCreated = new DateTime(2020, 10, 8, 21, 25, 30, 246, DateTimeKind.Local).AddTicks(1722),
                             DateEdited = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Đồ uống",
                             Name = "Espresso(Cafe nóng)",
@@ -174,7 +176,7 @@ namespace Cafe.Data.Migrations
                         new
                         {
                             Id = 4,
-                            DateCreated = new DateTime(2020, 10, 9, 22, 35, 49, 896, DateTimeKind.Local).AddTicks(2373),
+                            DateCreated = new DateTime(2020, 10, 8, 21, 25, 30, 246, DateTimeKind.Local).AddTicks(1725),
                             DateEdited = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Đồ uống",
                             Name = "Cappuccino(Cafe Ý)",
@@ -185,7 +187,7 @@ namespace Cafe.Data.Migrations
                         new
                         {
                             Id = 5,
-                            DateCreated = new DateTime(2020, 10, 9, 22, 35, 49, 896, DateTimeKind.Local).AddTicks(2374),
+                            DateCreated = new DateTime(2020, 10, 8, 21, 25, 30, 246, DateTimeKind.Local).AddTicks(1726),
                             DateEdited = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Đồ uống",
                             Name = "Latte(Cafe tạo hình)",
@@ -196,7 +198,7 @@ namespace Cafe.Data.Migrations
                         new
                         {
                             Id = 6,
-                            DateCreated = new DateTime(2020, 10, 9, 22, 35, 49, 896, DateTimeKind.Local).AddTicks(2376),
+                            DateCreated = new DateTime(2020, 10, 8, 21, 25, 30, 246, DateTimeKind.Local).AddTicks(1727),
                             DateEdited = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Đồ uống",
                             Name = "Coolies'N Cream(Cafe Cookies)",
@@ -207,7 +209,7 @@ namespace Cafe.Data.Migrations
                         new
                         {
                             Id = 7,
-                            DateCreated = new DateTime(2020, 10, 9, 22, 35, 49, 896, DateTimeKind.Local).AddTicks(2377),
+                            DateCreated = new DateTime(2020, 10, 8, 21, 25, 30, 246, DateTimeKind.Local).AddTicks(1729),
                             DateEdited = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Đồ uống",
                             Name = "Blende Coffee Balley(Cafe rượu sữa)",
@@ -218,7 +220,7 @@ namespace Cafe.Data.Migrations
                         new
                         {
                             Id = 8,
-                            DateCreated = new DateTime(2020, 10, 9, 22, 35, 49, 896, DateTimeKind.Local).AddTicks(2379),
+                            DateCreated = new DateTime(2020, 10, 8, 21, 25, 30, 246, DateTimeKind.Local).AddTicks(1730),
                             DateEdited = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Đồ uống",
                             Name = "Kiwi(sinh tố kiwi)",
@@ -229,7 +231,7 @@ namespace Cafe.Data.Migrations
                         new
                         {
                             Id = 9,
-                            DateCreated = new DateTime(2020, 10, 9, 22, 35, 49, 896, DateTimeKind.Local).AddTicks(2380),
+                            DateCreated = new DateTime(2020, 10, 8, 21, 25, 30, 246, DateTimeKind.Local).AddTicks(1731),
                             DateEdited = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Đồ uống",
                             Name = "Strawberry(Dâu)",
@@ -240,7 +242,7 @@ namespace Cafe.Data.Migrations
                         new
                         {
                             Id = 10,
-                            DateCreated = new DateTime(2020, 10, 9, 22, 35, 49, 896, DateTimeKind.Local).AddTicks(2382),
+                            DateCreated = new DateTime(2020, 10, 8, 21, 25, 30, 246, DateTimeKind.Local).AddTicks(1733),
                             DateEdited = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Đồ uống",
                             Name = "Blubery(Việt quất)",
@@ -251,7 +253,7 @@ namespace Cafe.Data.Migrations
                         new
                         {
                             Id = 11,
-                            DateCreated = new DateTime(2020, 10, 9, 22, 35, 49, 896, DateTimeKind.Local).AddTicks(2383),
+                            DateCreated = new DateTime(2020, 10, 8, 21, 25, 30, 246, DateTimeKind.Local).AddTicks(1734),
                             DateEdited = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Đồ uống",
                             Name = "Lychee(Vải)",
@@ -262,7 +264,7 @@ namespace Cafe.Data.Migrations
                         new
                         {
                             Id = 12,
-                            DateCreated = new DateTime(2020, 10, 9, 22, 35, 49, 896, DateTimeKind.Local).AddTicks(2384),
+                            DateCreated = new DateTime(2020, 10, 8, 21, 25, 30, 246, DateTimeKind.Local).AddTicks(1735),
                             DateEdited = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Đồ uống",
                             Name = "Peach(Đào)",
@@ -273,7 +275,7 @@ namespace Cafe.Data.Migrations
                         new
                         {
                             Id = 13,
-                            DateCreated = new DateTime(2020, 10, 9, 22, 35, 49, 896, DateTimeKind.Local).AddTicks(2385),
+                            DateCreated = new DateTime(2020, 10, 8, 21, 25, 30, 246, DateTimeKind.Local).AddTicks(1737),
                             DateEdited = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Đồ uống",
                             Name = "Green Tea(Trà xanh)",
@@ -284,7 +286,7 @@ namespace Cafe.Data.Migrations
                         new
                         {
                             Id = 14,
-                            DateCreated = new DateTime(2020, 10, 9, 22, 35, 49, 896, DateTimeKind.Local).AddTicks(2426),
+                            DateCreated = new DateTime(2020, 10, 8, 21, 25, 30, 246, DateTimeKind.Local).AddTicks(1738),
                             DateEdited = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Description = "Đồ uống",
                             Name = "Soda Grapefruit(Soda bưởi)",
@@ -433,9 +435,7 @@ namespace Cafe.Data.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("CustomerId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("nvarchar(450)")
-                        .HasDefaultValue("Khách lẻ");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("datetime2");
@@ -449,17 +449,10 @@ namespace Cafe.Data.Migrations
                     b.Property<int>("OriginalPrice")
                         .HasColumnType("int");
 
-                    b.Property<int>("Pay")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PayBack")
-                        .HasColumnType("int");
-
                     b.Property<int>("TotalPrice")
                         .HasColumnType("int");
 
                     b.Property<string>("UserCreated")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -473,11 +466,9 @@ namespace Cafe.Data.Migrations
                         {
                             Id = "HDB001",
                             CustomerId = "0356751687",
-                            DateCreated = new DateTime(2020, 10, 9, 22, 35, 49, 898, DateTimeKind.Local).AddTicks(3224),
+                            DateCreated = new DateTime(2020, 10, 8, 21, 25, 30, 248, DateTimeKind.Local).AddTicks(3179),
                             Discout = 0,
                             OriginalPrice = 15000,
-                            Pay = 0,
-                            PayBack = 0,
                             TotalPrice = 30000,
                             UserCreated = "admin"
                         },
@@ -485,11 +476,9 @@ namespace Cafe.Data.Migrations
                         {
                             Id = "HDB002",
                             CustomerId = "0356751687",
-                            DateCreated = new DateTime(2020, 10, 9, 22, 35, 49, 898, DateTimeKind.Local).AddTicks(5159),
+                            DateCreated = new DateTime(2020, 10, 8, 21, 25, 30, 248, DateTimeKind.Local).AddTicks(5116),
                             Discout = 0,
                             OriginalPrice = 20000,
-                            Pay = 0,
-                            PayBack = 0,
                             TotalPrice = 20000,
                             UserCreated = "admin"
                         });
