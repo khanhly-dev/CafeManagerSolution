@@ -19,34 +19,39 @@ namespace Cafe.WebApp.Controllers
             _sellApiClient = sellApiClient;
         }
 
-        public async Task<IActionResult> Index(ListProductInSellRequest request, SellRequest sellRequest)
+        [HttpGet]
+        public async Task<IActionResult>Index(ListProductInSellRequest request)
         {
-            var billData = new List<ListProductInSellRequest>();
-            billData = await _sellApiClient.LoadListProduct(request);
-            //foreach (var item in billData)
-            //{
-            //    if(item.SellBillId == sellRequest.SellBillId)
-            //    {
-            //        ViewData["data"] = billData;
-            //    }
-            //}
-            ViewData["data"] = billData;
-            foreach (var item in billData)
-            {
-                if (item.SellBillId == sellRequest.SellBillId)
-                {
-                    ViewData["data"] = billData;
-                }
-            }
+            var data = await _sellApiClient.LoadListProduct(request);
+
+            ViewData["data"] = data;
+
+            var comboboxData = await _sellApiClient.GetName();
+
+            ViewData["combobox"] = comboboxData;
+
             return View();
         }
-     
 
-        public async Task<List<GetNameRequest>> GetName()
+        [HttpPost]
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> Index([FromForm] SellBillCreateRequest request)
         {
-            var data = await _sellApiClient.GetName();
+            if (!ModelState.IsValid)
+                return View(request);
 
-            return data;
+            var result = await _sellApiClient.Create(request);
+            if (result)
+            {
+                TempData["result"] = "Thêm mới sản phẩm thành công";
+                return RedirectToAction("Index");
+            }
+
+            ModelState.AddModelError("", "Thêm sản phẩm thất bại");
+
+            
+            return View(request);
+
         }
     }
 }

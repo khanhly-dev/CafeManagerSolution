@@ -21,7 +21,7 @@ namespace Cafe.Application.Catalog.Sell
             _context = context;
         }
 
-        public async Task<int> CompleteSellBill(SellRequest request)
+        public async Task<int> AddProductIntoSellBill(UpdateProductInBillRequest request)
         {
             var SellBillCompleted = new ProductInSellBill()
             {
@@ -35,7 +35,7 @@ namespace Cafe.Application.Catalog.Sell
         }
 
 
-        public async Task<int> UndoSellBill(SellRequest request)
+        public async Task<int> DeleteProductFromSellBill(UpdateProductInBillRequest request)
         {
             var sellBill = await _context.ProductInSellBills.FindAsync(request.SellBillId, request.ProductId);
 
@@ -46,17 +46,19 @@ namespace Cafe.Application.Catalog.Sell
         }
 
 
-        public async Task<int> CreateSellBill(SellRequest request)
+        public async Task<int> CreateSellBill(SellBillCreateRequest request)
         {
             var sellBill = new SellBill()
             {
                 Id = request.SellBillId,
                 CustomerId=request.CustomerId,
-                DateCreated=request.DateCreated,
+                DateCreated=DateTime.Now,
                 UserCreated=request.UserCreated,
                 OriginalPrice=request.OriginalPrice,
-                Discout=request.Discout,
+                Discout= request.Discout,
                 TotalPrice=request.TotalPrice,
+                Pay=request.Pay,
+                PayBack=request.PayBack,
                 Note=request.Note
             };
 
@@ -89,14 +91,17 @@ namespace Cafe.Application.Catalog.Sell
                         select new {p, pis };
 
             if (!string.IsNullOrEmpty(request.SellBillId))
+            {
                 query = query.Where(x => x.pis.SellBillId.Contains(request.SellBillId));
-
-            var data = await query.Select(x => new ListProductInSellRequest()
+            }
+                
+            var data = await query
+                .Select(x => new ListProductInSellRequest()
             {
                 Name = x.p.Name,
                 Price = x.p.Price,
                 SellBillId = x.pis.SellBillId,
-                TotalPrice = 0,
+                TotalPrice = 1,
                 OriginalPrice = 0,
                 Discout = 0,
             }).ToListAsync();

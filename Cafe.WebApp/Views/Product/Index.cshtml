@@ -1,11 +1,11 @@
 ﻿@using Cafe.ViewModel.Catalog.Common
-@model PageResult<Cafe.ViewModel.Catalog.Product.ProductViewModel> 
+@model PageResult<Cafe.ViewModel.Catalog.Product.ProductViewModel>
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
-@{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+@{ var urlTemplate = Url.Action() + "?pageIndex={0}";}
+
+@{ ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
 
 <div class="filter-div">
     <div class="all-in-filter">
@@ -34,11 +34,11 @@
 
 <div class="list-product-div">
     <form class="seach-product-div" asp-action="Index" method="get">
-        <input type="text"  name="keyword" id="seach-input" placeholder="Tìm kiếm">
+        <input type="text" name="keyword" id="seach-input" placeholder="Tìm kiếm">
         <button class="seach-icon" type="submit">
             <i class="fas fa-search"></i>
         </button>
-       
+
     </form>
 
     <div class="wrap">
@@ -58,26 +58,52 @@
                 <tbody></tbody>
                 @foreach (var item in Model.Items)
                 {
-                    <tr>
-                        <td class="td-body">
-                            @Html.DisplayFor(modelItem => item.Name)
-                        </td>
-                        <td class="td-body">
-                            @Html.DisplayFor(modelItem => item.Price)
-                        </td>
-                        <td class="td-body">
-                            @Html.DisplayFor(modelItem => item.Description)
-                        </td>
-                        <td class="td-body">
-                            @Html.DisplayFor(modelItem => item.UserCreated)
-                        </td>
-                        <td class="td-body">
-                            @Html.DisplayFor(modelItem => item.DateCreated)
-                        </td>                      
-                    </tr>
-                }
+    <tr>
+        <td class="td-body">
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td class="td-body">
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td class="td-body">
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td class="td-body">
+            @Html.DisplayFor(modelItem => item.UserCreated)
+        </td>
+        <td class="td-body">
+            @Html.DisplayFor(modelItem => item.DateCreated)
+        </td>
+    </tr>
+}
 
             </table>
+
+
+            @*@for (int i = 0; i < Model.PageCount; i++)
+            {
+                    //<a href="@urlTemplate.Replace("{0}", (Model.PageIndex+i).ToString())" name="pageIndex">@(ViewBag.pageIndex+i)</a>
+                @if (Model.PageIndex > 1)
+                {
+        <a href="@urlTemplate.Replace("{0}", (Model.PageIndex-1).ToString())" name="pageIndex">@(ViewBag.pageIndex-i)</a>
+                }
+                @if (Model.PageIndex < Model.PageCount)
+                {
+        <a href="@urlTemplate.Replace("{0}", (Model.PageIndex+1).ToString())" name="pageIndex">@(ViewBag.pageIndex+i)</a>
+                }
+
+
+
+            }*@
+            @if (Model.PageIndex > 1)
+            {
+                <a href="@urlTemplate.Replace("{0}", (Model.PageIndex-1).ToString())" name="pageIndex">trước</a>
+            }
+            @if (Model.PageIndex < Model.PageCount)
+            {
+                <a href="@urlTemplate.Replace("{0}", (Model.PageIndex+1).ToString())" name="pageIndex">sau</a>
+            }
+
         </div>
     </div>
 

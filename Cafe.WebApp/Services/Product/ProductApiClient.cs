@@ -25,7 +25,11 @@ namespace Cafe.WebApp.Services
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri("https://localhost:5001");
 
-            var response = await client.GetAsync($"/api/Product/GetAll?keyword={request.Keyword}");
+            var response = await client.GetAsync(
+                $"/api/Product/GetAll?keyword={request.Keyword}" + 
+                $"&pageIndex={request.PageIndex}" + 
+                $"&pageSize={request.PageSize}"
+                );
             var body = await response.Content.ReadAsStringAsync();
             var data = JsonConvert.DeserializeObject<PageResult<ProductViewModel>>(body);
             return data;

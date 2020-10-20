@@ -34,10 +34,32 @@ namespace Cafe.WebApp.Services.Sell
             var client = _httpClientFactory.CreateClient();
             client.BaseAddress = new Uri("https://localhost:5001");
 
-            var response = await client.GetAsync($"/api/Sell/LoadListProduct?keyword={request.SellBillId}");
+            var response = await client.GetAsync($"/api/Sell/LoadListProduct?SellBillId={request.SellBillId}");
             var body = await response.Content.ReadAsStringAsync();
             var data = JsonConvert.DeserializeObject<List<ListProductInSellRequest>>(body);
             return data;
+        }
+
+
+        public async Task<bool> Create(SellBillCreateRequest request)
+        {
+            var client = _httpClientFactory.CreateClient();
+            client.BaseAddress = new Uri("https://localhost:5001");
+
+            var requestContent = new MultipartFormDataContent();
+
+            requestContent.Add(new StringContent(request.SellBillId.ToString()), "SellBillId");
+            requestContent.Add(new StringContent(request.CustomerId.ToString()), "CustomerId");
+            requestContent.Add(new StringContent(request.DateCreated.ToString()), "DateCreated");
+            requestContent.Add(new StringContent(request.UserCreated.ToString()), "UserCreated");
+            requestContent.Add(new StringContent(request.OriginalPrice.ToString()), "OriginalPrice");
+            requestContent.Add(new StringContent(request.Discout.ToString()), "Discout");
+            requestContent.Add(new StringContent(request.TotalPrice.ToString()), "TotalPrice");
+            requestContent.Add(new StringContent(request.Note.ToString()), "Note");
+
+            var response = await client.PostAsync("/api/Sell/create/", requestContent);
+
+            return response.IsSuccessStatusCode;
         }
     }
 }

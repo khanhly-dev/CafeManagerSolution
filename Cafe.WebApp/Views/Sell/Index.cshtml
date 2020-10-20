@@ -1,4 +1,5 @@
-﻿@model Cafe.ViewModel.Catalog.Sell.SellRequest.SellRequest
+﻿@model Cafe.ViewModel.Catalog.Sell.SellRequest.SellBillCreateRequest
+@using Cafe.WebApp.Services.Sell
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     ViewData["Title"] = "Index";
@@ -7,21 +8,207 @@
 
 @{
     var data = ViewData["data"] as List<Cafe.ViewModel.Catalog.Sell.SellRequest.ListProductInSellRequest>;
+    var comboboxData = ViewData["combobox"] as List<Cafe.ViewModel.Catalog.Product.ProductRequest.GetNameRequest>;
 }
 
-<script src="~/js/jquery-3.5.1.js"></script>
-<script src="~/js/jquery.autocomplete.min.js"></script>
+
+
+@*<style>
+        .custom-combobox {
+            position: relative;
+            display: inline-block;
+            margin-left: 20px;
+            margin-top: 7px;
+        }
+
+        .custom-combobox-toggle {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            margin-left: -1px;
+            padding: 0;
+        }
+
+        .custom-combobox-input {
+            margin: 0;
+            padding: 5px 10px;
+            width: 700px;
+        }
+</style>*@
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    $(function () {
+        $.widget("custom.combobox", {
+            _create: function () {
+                this.wrapper = $("<span>")
+                    .addClass("custom-combobox")
+                    .insertAfter(this.element);
+
+                this.element.hide();
+                this._createAutocomplete();
+                this._createShowAllButton();
+            },
+
+            _createAutocomplete: function () {
+                var selected = this.element.children(":selected"),
+                    value = selected.val() ? selected.text() : "";
+
+                this.input = $("<input>")
+                    .appendTo(this.wrapper)
+                    .val(value)
+                    .attr("title", "")
+                    .addClass("custom-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left")
+                    .autocomplete({
+                        delay: 0,
+                        minLength: 0,
+                        source: $.proxy(this, "_source")
+                    })
+                    .tooltip({
+                        classes: {
+                            "ui-tooltip": "ui-state-highlight"
+                        }
+                    });
+
+                this._on(this.input, {
+                    autocompleteselect: function (event, ui) {
+                        ui.item.option.selected = true;
+                        this._trigger("select", event, {
+                            item: ui.item.option
+                        });
+                    },
+
+                    autocompletechange: "_removeIfInvalid"
+                });
+            },
+
+            _createShowAllButton: function () {
+                var input = this.input,
+                    wasOpen = false;
+
+                $("<a>")
+                    .attr("tabIndex", -1)
+                    .attr("title", "Show All Items")
+                    .tooltip()
+                    .appendTo(this.wrapper)
+                    .button({
+                        icons: {
+                            primary: "ui-icon-triangle-1-s"
+                        },
+                        text: false
+                    })
+                    .removeClass("ui-corner-all")
+                    .addClass("custom-combobox-toggle ui-corner-right")
+                    .on("mousedown", function () {
+                        wasOpen = input.autocomplete("widget").is(":visible");
+                    })
+                    .on("click", function () {
+                        input.trigger("focus");
+
+                        // Close if already visible
+                        if (wasOpen) {
+                            return;
+                        }
+
+                        // Pass empty string as value to search for, displaying all results
+                        input.autocomplete("search", "");
+                    });
+            },
+
+            _source: function (request, response) {
+                var matcher = new RegExp($.ui.autocomplete.escapeRegex(request.term), "i");
+                response(this.element.children("option").map(function () {
+                    var text = $(this).text();
+                    if (this.value && (!request.term || matcher.test(text)))
+                        return {
+                            label: text,
+                            value: text,
+                            option: this
+                        };
+                }));
+            },
+
+            _removeIfInvalid: function (event, ui) {
+
+                // Selected an item, nothing to do
+                if (ui.item) {
+                    return;
+                }
+
+                // Search for a match (case-insensitive)
+                var value = this.input.val(),
+                    valueLowerCase = value.toLowerCase(),
+                    valid = false;
+                this.element.children("option").each(function () {
+                    if ($(this).text().toLowerCase() === valueLowerCase) {
+                        this.selected = valid = true;
+                        return false;
+                    }
+                });
+
+                // Found a match, nothing to do
+                if (valid) {
+                    return;
+                }
+
+                // Remove invalid value
+                this.input
+                    .val("")
+                    .attr("title", value + " didn't match any item")
+                    .tooltip("open");
+                this.element.val("");
+                this._delay(function () {
+                    this.input.tooltip("close").attr("title", "");
+                }, 2500);
+                this.input.autocomplete("instance").term = "";
+            },
+
+            _destroy: function () {
+                this.wrapper.remove();
+                this.element.show();
+            }
+        });
+
+        $("#combobox").combobox();
+        $("#toggle").on("click", function () {
+            $("#combobox").toggle();
+        });
+    });
+</script>
+@*autocomplete seach link and script*@
+
+
+
 
 <div class="bill-div">
-    <form class="seach-div">
-        <input type="text" name="ProductId" id="seach-input" class="biginput" placeholder="Tìm kiếm">
-        <button class="seach-icon">
+    @*<form class="seach-div ui-widget" asp-action="Index" method="get">
+            <input type="text" id="seach-input" class="biginput" placeholder="Tìm kiếm" name="SellBillId">
+            <select id="seach-input combobox" class="biginput">
+                @foreach (var item in comboboxData)
+                {
+                    <option>@item.Name + @item.Price</option>
+                }
+            </select>
+
+            <button class="seach-icon" id="toggle" type="submit">
+                <i class="fas fa-plus"></i>
+            </button>
+        </form>*@
+
+
+    <form class="ui-widget">
+        <label id="add-lb">Thêm:</label>
+        <select id="combobox">
+            @foreach (var item in comboboxData)
+            {
+                <option>@item.Name + @item.Price</option>
+            }
+        </select>
+        <button class="seach-icon" type="submit">
             <i class="fas fa-plus"></i>
         </button>
     </form>
 
-
-    @*@Html.Partial("LoadListProduct")*@
     <table class="list-product">
         <thead>
             <tr>
@@ -54,21 +241,6 @@
         </thead>
 
 
-        @*<tbody>
-                <tr>
-                    <td>
-                        <button>
-                            <i class="fas fa-times"></i>
-                        </button>
-                    </td>
-                    <td>Cafe</td>
-                    <td>25.000</td>
-                    <td>2</td>
-                    <td>50.000</td>
-                    <td>10%</td>
-                    <td>45.000</td>
-                </tr>
-            </tbody>*@
 
         @foreach (var item in data)
         {
@@ -99,6 +271,8 @@
             </tr>
         }
 
+
+
     </table>
 
 </div>
@@ -106,11 +280,11 @@
 <div class="pay-div">
     <div class="user-div">
         <i class="fas fa-user"></i>
-        <h5>user</h5>
-        <input class="date-created" type="datetime-local" name="DateCreated">
+        <input asp-for="UserCreated" name="UserCreated">
+        <input asp-for="DateCreated" class="date-created" type="datetime-local" name="DateCreated">
     </div>
-    <form class="customer-div" asp-action="Index">
-        <input type="text" id="customer-seach-input" placeholder="Tìm kiếm khách hàng" name="SellBillId" >
+    <form class="customer-div">
+        <input type="text" id="customer-seach-input" placeholder="Tìm kiếm khách hàng" asp-for="CustomerId" name="CustomerId">
         <button class="customer-seach-icon">
             <i class="fas fa-plus"></i>
         </button>
@@ -123,46 +297,64 @@
         </button>
     </div>
 
-    <div class="info-pay-div">
-        <label for="">Số HĐ:</label>
-        <input class="info-pay-input" type="text" name="SellBillId1" value="HDB001">
-    </div>
-    <div class="info-pay-div">
-        <label for="">Tổng tiền:</label>
-        <input class="info-pay-input" type="text" name="OriginalPrice">
-    </div>
-    <div class="info-pay-div">
-        <label for="">giảm giá:</label>
-        <input class="info-pay-input" type="text" name="Discout">
-    </div>
-    <div class="info-pay-div">
-        <label for="">Thành tiền:</label>
-        <input class="info-pay-input" type="text" name="TotalPrice">
-    </div>
-    <div class="info-pay-div">
-        <label for="">Khách trả:</label>
-        <input class="info-pay-input" type="text">
-    </div>
-    <div class="info-pay-div">
-        <label for="">Trả lại:</label>
-        <input class="info-pay-input" type="text">
-    </div>
-    <div class="info-pay-div">
-        <input class="note-pay-input" type="text" placeholder="Ghi chú" name="Note">
-    </div>
+    <form asp-action="Index" enctype="multipart/form-data" method="post">
+        <div class="info-pay-div">
+            <label asp-for="UserCreated">Thu ngân:</label>
+            <input asp-for="UserCreated" class="info-pay-input" type="text" name="UserCreated" value="admin">
+        </div>
+        <div class="info-pay-div">
+            <label asp-for="CustomerId">Khách hàng:</label>
+            <input asp-for="CustomerId" class="info-pay-input" type="text" name="CustomerId">
+        </div>
+        <div class="info-pay-div">
+            <label asp-for="DateCreated">Thời gian:</label>
+            <input asp-for="DateCreated" class="info-pay-input" type="datetime-local" name="DateCreated" placeholder="tìm kiếm khách hàng">
+        </div>
 
-    <div class="payment-div"></div>
-    <button class="print-btn">
-        In hóa đơn
-    </button>
-    <button class="pay-btn">
-        Thanh toán
-    </button>
+
+        <div class="info-pay-div">
+            <label asp-for="SellBillId">Số HĐ:</label>
+            <input asp-for="SellBillId" class="info-pay-input" type="text" name="SellBillId">
+        </div>
+        <div class="info-pay-div">
+            <label asp-for="OriginalPrice">Tổng tiền:</label>
+            <input asp-for="OriginalPrice" class="info-pay-input" type="text" name="OriginalPrice">
+        </div>
+        <div class="info-pay-div">
+            <label asp-for="Discout">giảm giá:</label>
+            <input asp-for="Discout" class="info-pay-input" type="text" name="Discout">
+        </div>
+        <div class="info-pay-div">
+            <label asp-for="TotalPrice">Thành tiền:</label>
+            <input asp-for="TotalPrice" class="info-pay-input" type="text" name="TotalPrice">
+        </div>
+        <div class="info-pay-div">
+            <label asp-for="Pay">Khách trả:</label>
+            <input asp-for="Pay" class="info-pay-input" type="text" name="Pay">
+        </div>
+        <div class="info-pay-div">
+            <label asp-for="PayBack">Trả lại:</label>
+            <input asp-for="PayBack" class="info-pay-input" type="text" name="PayBack">
+        </div>
+        <div class="info-pay-div">
+            <input asp-for="Note" class="note-pay-input" type="text" placeholder="Ghi chú" name="Note">
+        </div>
+
+        <div class="payment-div"></div>
+        <button class="print-btn">
+            In hóa đơn
+        </button>
+        <button class="pay-btn" type="submit">
+            Thanh toán
+        </button>
+
+    </form>
 </div>
 
 
 
 
+@*demo ajax*@
 
 @*<script type="text/javascript">
 
@@ -210,25 +402,5 @@
         })
     </script>*@
 
-@*<script>
 
-        $(document).ready(function () {
-            var a = [
-                'Afghan afghani',
-                'Albanian lek',
-                'Algerian dinar',
-                'European euro',
-                'Angolan kwanza',
-                'East Caribbean dollar',
-                'Vietnamese dong',
-                'Yemeni rial',
-                'Zambian kwacha',
-                'Zimbabwean dollar'
-            ];
-            console.log(a);
-            $('#seach-input').autocomplete({
-                lookup: a,
-            });
-        });
-    </script>*@
 
