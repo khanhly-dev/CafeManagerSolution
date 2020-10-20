@@ -3,9 +3,9 @@
 
 <head>
     <link rel="stylesheet" href="/css/MainTab.css">
-    <link href="~/css/autocomplete.css" rel="stylesheet" />
-    <link href="~/css/sell.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/sell.css">
     <link rel="stylesheet" href="/css/Product.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://kit.fontawesome.com/9604e37fea.js" crossorigin="anonymous"></script>
 </head>
 
@@ -26,7 +26,7 @@
                 <h2 id="h">Manager</h2>
                 <div class="list-in-route">
                     <i class="fab fa-sellcast"></i>
-                    <a>@Html.ActionLink("Sell","Index","Sell")</a>
+                    <a>@Html.ActionLink("Sell", "Index", "Sell")</a>
                 </div>
                 <div class="list-in-route">
                     <i class="fas fa-home"></i>
@@ -90,6 +90,7 @@
 
     </div>
 
+    @RenderSection("scripts", required: false)
 </body>
 
 
