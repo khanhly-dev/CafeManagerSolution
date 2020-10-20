@@ -25,6 +25,11 @@ namespace Cafe.WebApp.Controllers
             var data = await _sellApiClient.LoadListProduct(request);
 
             ViewData["data"] = data;
+
+            var comboboxData = await _sellApiClient.GetName();
+
+            ViewData["combobox"] = comboboxData;
+
             return View();
         }
 
@@ -47,20 +52,6 @@ namespace Cafe.WebApp.Controllers
             
             return View(request);
 
-        }
-
-        //public async Task<IActionResult> LoadListProduct(ListProductInSellRequest request)
-        //{
-        //    var listProduct = await _sellApiClient.LoadListProduct(request);
-        //    return View(listProduct);
-            
-        //}     
-
-        public async Task<List<GetNameRequest>> GetName()
-        {
-            var data = await _sellApiClient.GetName();
-
-            return data;
         }
     }
 }

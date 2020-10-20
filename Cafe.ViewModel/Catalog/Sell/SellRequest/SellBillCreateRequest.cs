@@ -8,7 +8,6 @@ namespace Cafe.ViewModel.Catalog.Sell.SellRequest
     public class SellBillCreateRequest
     {
         public string SellBillId { get; set; }
-        [Required(AllowEmptyStrings = true)]
         public string CustomerId { get; set; }
         public DateTime DateCreated { get; set; }
         public string UserCreated { get; set; }

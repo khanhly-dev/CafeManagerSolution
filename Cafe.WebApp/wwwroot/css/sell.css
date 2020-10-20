@@ -1,104 +1,82 @@
-/*-------------bill div--------------------*/
-.seach-div
-{
-    
+﻿/*-------------bill div--------------------*/
+.seach-div {
     height: 50px;
     width: 100%;
     background-color: #414141;
 }
 
-.seach-icon
-{
+.seach-icon {
     width: 30px;
     height: 30px;
     display: inline-block;
 }
 
-#seach-input
-{
+#seach-input {
     margin-top: 8.5px;
     margin-left: 20px;
     width: 500px;
     height: 25px;
     display: inline-block;
     border-radius: 3px;
-} 
+}
 
-#product-item
-{
+#product-item {
     width: 400px;
-
     border-bottom: 1px solid #414141;
 }
 
-#price-item
-{
+#price-item {
     width: 150px;
-    
     border-bottom: 1px solid #414141;
 }
 
-#quantity-item
-{
+#quantity-item {
     width: 70px;
-   
     border-bottom: 1px solid #414141;
 }
 
-#total-money-item
-{
+#total-money-item {
     width: 200px;
- 
     border-bottom: 1px solid #414141;
 }
 
-#discount-item
-{
+#discount-item {
     width: 100px;
-    
     border-bottom: 1px solid #414141;
 }
 
-#money-item
-{
+#money-item {
     width: 200px;
-    
     border-bottom: 1px solid #414141;
 }
 
-td
-{
+td {
     text-align: center;
-    
     border-bottom: 1px solid #414141;
 }
 /*-----------------pay div--------------------*/
-* :focus
-{
+* :focus {
     outline: none;
 }
 /*----------------------------------------------------------*/
-.user-div
-{
+.user-div {
     width: auto;
     margin-top: 20px;
     float: left;
 }
 
-i
-{
+i {
     display: inline-block;
 }
-h5
-{
+
+h5 {
     display: inline;
     margin-right: 60px;
 }
 
-.date-created
-{
+.date-created {
     width: auto;
-    float: right ;
+    float: right;
     border: none;
     border-bottom: 1px solid black;
 }
@@ -106,98 +84,104 @@ h5
 
 
 
-.customer-div
-{
+.customer-div {
     width: auto;
     margin-right: 30px;
     margin-top: 20px;
 }
 
-#customer-seach-input
-{
+#customer-seach-input {
     width: 80%;
     height: 25px;
     border: none;
     border-bottom: 1px solid black;
 }
 
-.customer-seach-icon
-{
+.customer-seach-icon {
     width: 30px;
     height: 30px;
-   
 }
 /*---------------------------------------------------------------*/
-.info-pay-div
-{
+.info-pay-div {
     width: auto;
     margin-right: 30px;
     margin-top: 20px;
 }
 
-.info-pay-input
-{
+.info-pay-input {
     border: none;
-    border-bottom: 1px solid 	#aaaaaa;
+    border-bottom: 1px solid #aaaaaa;
     width: 70%;
     float: right;
 }
 
-.note-pay-input
-{
+.note-pay-input {
     width: 100%;
     border: none;
-    border-bottom: 1px solid 	#aaaaaa;
+    border-bottom: 1px solid #aaaaaa;
     height: 25px;
 }
 /*-----------------------------------------------------------*/
-.product-btn
-{
+.product-btn {
     width: 100px;
     height: 25px;
 }
 
-.product-div
-{
+.product-div {
     margin-top: 60px;
     margin-bottom: 60px;
 }
 /*------------------------------------------------------------*/
-.print-btn
-{
+.print-btn {
     width: 45%;
     height: 55px;
-    border-radius: 3px; 
+    border-radius: 3px;
     background-color: #3c99dc;
     color: white;
     font-size: 18px;
 }
 
-.pay-btn
-{
+.pay-btn {
     background-color: #76ba1b;
     width: 45%;
     height: 55px;
-    border-radius: 3px; 
+    border-radius: 3px;
     color: white;
     font-size: 18px;
 }
 
-.payment-div
-{
-    margin-top: 180px;
+.payment-div {
+    margin-top: 50px;
     width: auto;
     margin-right: 30px;
     padding: 0px;
 }
 
-.admin-div
-{
+.admin-div {
     float: right;
     margin-top: 20px;
 }
 
 
+/*------------------------------------------------------------*/
 
+.custom-combobox {
+    position: relative;
+    display: inline-block;
+    margin-left: 20px;
+    margin-top: 7px;
+}
 
+.custom-combobox-toggle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin-left: -1px;
+    padding: 0;
+}
 
+.custom-combobox-input {
+    margin: 0;
+    padding: 5px 10px;
+    width: 700px;
+}
