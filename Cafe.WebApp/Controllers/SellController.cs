@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Cafe.ViewModel.Catalog.Product.ProductRequest;
 using Cafe.ViewModel.Catalog.Sell.SellRequest;
 using Cafe.WebApp.Services.Sell;
+using Cafe.WebApp.TempData;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cafe.WebApp.Controllers
@@ -13,19 +14,33 @@ namespace Cafe.WebApp.Controllers
     public class SellController : Controller
     {
         private readonly ISellApiClient _sellApiClient;
-
-        public SellController( ISellApiClient sellApiClient)
+      
+        public SellController(ISellApiClient sellApiClient)
         {
             _sellApiClient = sellApiClient;
+          
         }
 
         [HttpGet]
-        public async Task<IActionResult>Index(ListProductInSellRequest request)
+        public async Task<IActionResult>Index(AddProductIntoBillRequest request)
         {
-            var data = await _sellApiClient.LoadListProduct(request);
+            
 
-            ViewData["data"] = data;
+            var product = new AddProductIntoBillRequest()
+            {
+                Name = request.Name,
+                Price = request.Price,
+                Quantity = request.Quantity,
+                OriginalPrice = request.Price * request.Quantity,
+                Discout = request.Discout,
+                TotalPrice = request.OriginalPrice - request.Discout
+            };
 
+            ListProductInBillData.instance.listProduct.Add(product);
+
+            ViewData["data"] = ListProductInBillData.instance.listProduct;
+
+            //get data for seach box
             var comboboxData = await _sellApiClient.GetName();
 
             ViewData["combobox"] = comboboxData;

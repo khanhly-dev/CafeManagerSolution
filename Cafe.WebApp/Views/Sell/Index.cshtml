@@ -7,34 +7,46 @@
 }
 
 @{
-    var data = ViewData["data"] as List<Cafe.ViewModel.Catalog.Sell.SellRequest.ListProductInSellRequest>;
+    var data = ViewData["data"] as List<Cafe.ViewModel.Catalog.Sell.SellRequest.AddProductIntoBillRequest>;
     var comboboxData = ViewData["combobox"] as List<Cafe.ViewModel.Catalog.Product.ProductRequest.GetNameRequest>;
 }
 
 
 
-@*<style>
-        .custom-combobox {
-            position: relative;
-            display: inline-block;
-            margin-left: 20px;
-            margin-top: 7px;
-        }
+<style>
+    .custom-combobox {
+        position: relative;
+        display: inline-block;
+        margin-left: 20px;
+        margin-top: 7px;
+    }
 
-        .custom-combobox-toggle {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            margin-left: -1px;
-            padding: 0;
-        }
+    .custom-combobox-toggle {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        margin-left: -1px;
+        padding: 0;
+    }
 
-        .custom-combobox-input {
-            margin: 0;
-            padding: 5px 10px;
-            width: 700px;
-        }
-</style>*@
+    .custom-combobox-input {
+        margin: 0;
+        padding: 5px 10px;
+        width: 700px;
+    }
+
+    .payment-div {
+        margin-top: 50px;
+    }
+
+    #lb2 {
+        float: right;
+    }
+
+    .seach-icon {
+        margin-left: 50px;
+    }
+</style>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
@@ -196,12 +208,15 @@
         </form>*@
 
 
-    <form class="ui-widget">
+    <form class="ui-widget" asp-action="Index" method="get">
         <label id="add-lb">Thêm:</label>
-        <select id="combobox">
+        <select id="combobox" asp-for="addProductIntoBillRequests" name="Name">
             @foreach (var item in comboboxData)
             {
-                <option>@item.Name + @item.Price</option>
+                <option>@item.Name
+                    @*<label asp-for="addProductIntoBillRequests.Name" name="Name">@item.Name</label>
+                    <label asp-for="addProductIntoBillRequests.Price" name="Price">@item.Price</label>*@
+                </option>
             }
         </select>
         <button class="seach-icon" type="submit">
@@ -243,33 +258,30 @@
 
 
         @foreach (var item in data)
-        {
-            <tr>
-                <td>
-                    <button>
-                        <i class="fas fa-times"></i>
-                    </button>
-                </td>
-                <td class="td-body">
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td class="td-body">
-                    @Html.DisplayFor(modelItem => item.Price)
-                </td>
-                <td class="td-body">
-                    @Html.DisplayFor(modelItem => item.OriginalPrice)
-                </td>
-                <td class="td-body">
-                    @Html.DisplayFor(modelItem => item.Discout)
-                </td>
-                <td class="td-body">
-                    @Html.DisplayFor(modelItem => item.TotalPrice)
-                </td>
-                <td class="td-body">
-                    @Html.DisplayFor(modelItem => item.SellBillId)
-                </td>
-            </tr>
-        }
+            {
+                <tr>
+                    <td>
+                        <button>
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </td>
+                    <td class="td-body">
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td class="td-body">
+                        @Html.DisplayFor(modelItem => item.Price)
+                    </td>
+                    <td class="td-body">
+                        @Html.DisplayFor(modelItem => item.OriginalPrice)
+                    </td>
+                    <td class="td-body">
+                        @Html.DisplayFor(modelItem => item.Discout)
+                    </td>
+                    <td class="td-body">
+                        @Html.DisplayFor(modelItem => item.TotalPrice)
+                    </td>                   
+                </tr>
+            }
 
 
 

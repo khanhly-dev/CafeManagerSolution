@@ -17,5 +17,8 @@ namespace Cafe.ViewModel.Catalog.Sell.SellRequest
         public int Pay { get; set; }
         public int PayBack { get; set; }
         public string Note { get; set; }
+
+
+        public AddProductIntoBillRequest addProductIntoBillRequests { get; set; }
     }
 }
